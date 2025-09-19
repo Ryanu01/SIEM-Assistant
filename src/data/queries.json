@@ -1,0 +1,49 @@
+{
+  "find_failed_logins": [
+    {"timestamp": "2025-09-19T10:01:23Z", "user": "jdoe", "source_ip": "123.45.67.89", "status": "failed"},
+    {"timestamp": "2025-09-19T10:05:11Z", "user": "admin", "source_ip": "192.168.1.10", "status": "failed"},
+    {"timestamp": "2025-09-19T10:06:45Z", "user": "asmith", "source_ip": "98.76.54.32", "status": "failed"},
+    {"timestamp": "2025-09-19T10:09:02Z", "user": "jdoe", "source_ip": "123.45.67.89", "status": "failed"},
+    {"timestamp": "2025-09-19T10:15:18Z", "user": "root", "source_ip": "203.0.113.55", "status": "failed"},
+    {"timestamp": "2025-09-19T10:21:55Z", "user": "service-account", "source_ip": "10.0.5.12", "status": "failed"},
+    {"timestamp": "2025-09-19T10:22:03Z", "user": "m.davis", "source_ip": "172.16.31.8", "status": "failed"},
+    {"timestamp": "2025-09-19T10:30:11Z", "user": "guest", "source_ip": "198.51.100.2", "status": "failed"},
+    {"timestamp": "2025-09-19T10:34:49Z", "user": "asmith", "source_ip": "98.76.54.32", "status": "failed"},
+    {"timestamp": "2025-09-19T10:45:01Z", "user": "administrator", "source_ip": "10.1.1.1", "status": "failed"},
+    {"timestamp": "2025-09-19T10:51:36Z", "user": "jgarcia", "source_ip": "8.8.8.8", "status": "failed"},
+    {"timestamp": "2025-09-19T10:59:59Z", "user": "testuser", "source_ip": "192.168.1.150", "status": "failed"},
+    {"timestamp": "2025-09-19T11:03:14Z", "user": "admin", "source_ip": "203.0.113.100", "status": "failed"},
+    {"timestamp": "2025-09-19T11:04:12Z", "user": "admin", "source_ip": "203.0.113.100", "status": "failed"}
+  ],
+  "find_malware": [
+    {"timestamp": "2025-09-19T11:15:40Z", "hostname": "finance-01", "file_path": "C:\\Users\\Temp\\update.exe", "malware_signature": "Trojan.Gen.2", "action": "quarantined"},
+    {"timestamp": "2025-09-19T11:18:22Z", "hostname": "hr-desktop-15", "file_path": "/tmp/installer.sh", "malware_signature": "Linux.Ransom.1", "action": "detected"},
+    {"timestamp": "2025-09-19T11:21:03Z", "hostname": "finance-01", "file_path": "C:\\Windows\\System32\\svchost.exe", "malware_signature": "W32.Mimikatz.A", "action": "blocked"},
+    {"timestamp": "2025-09-19T11:25:09Z", "hostname": "web-server-03", "file_path": "/var/www/html/uploads/shell.php", "malware_signature": "PHP.Webshell.B", "action": "detected"},
+    {"timestamp": "2025-09-19T11:31:45Z", "hostname": "marketing-pc-05", "file_path": "C:\\Users\\k.chen\\Downloads\\free-screensaver.scr", "malware_signature": "Adware.Popunder.C", "action": "quarantined"},
+    {"timestamp": "2025-09-19T11:33:12Z", "hostname": "dev-server-02", "file_path": "/home/dev/tools/license-gen.bin", "malware_signature": "Linux.Keygen.A", "action": "blocked"},
+    {"timestamp": "2025-09-19T11:40:50Z", "hostname": "hr-desktop-15", "file_path": "C:\\Users\\asmith\\AppData\\Roaming\\crypto.dll", "malware_signature": "Ransom.Cryptolocker.E", "action": "detected"},
+    {"timestamp": "2025-09-19T11:42:19Z", "hostname": "db-server-01", "file_path": "/root/backup.sh", "malware_signature": "Backdoor.Shell.2", "action": "cleaned"},
+    {"timestamp": "2025-09-19T11:48:33Z", "hostname": "vpn-gateway", "file_path": "/etc/openvpn/auth.so", "malware_signature": "Trojan.Linux.Dnschanger", "action": "blocked"},
+    {"timestamp": "2025-09-19T11:55:01Z", "hostname": "finance-01", "file_path": "C:\\PerfLogs\\perf.dat", "malware_signature": "Spy.Keylogger.Generic", "action": "quarantined"},
+    {"timestamp": "2025-09-19T11:58:24Z", "hostname": "web-server-03", "file_path": "/tmp/sess_a1b2c3d4", "malware_signature": "Linux.Exploit.CVE-2024-1234", "action": "detected"},
+    {"timestamp": "2025-09-19T12:05:15Z", "hostname": "marketing-pc-05", "file_path": "C:\\Windows\\Temp\\java_update.exe", "malware_signature": "Trojan.Downloader.JS", "action": "blocked"},
+    {"timestamp": "2025-09-19T12:10:29Z", "hostname": "ceo-laptop", "file_path": "C:\\Users\\s.jones\\Documents\\report.docx.vbs", "malware_signature": "VBS.LoveLetter.A", "action": "quarantined"}
+  ],
+  "count_alerts_by_host": [
+    {"hostname": "finance-01", "alert_count": 2},
+    {"hostname": "hr-desktop-15", "alert_count": 1},
+    {"hostname": "web-server-03", "alert_count": 5},
+    {"hostname": "db-server-01", "alert_count": 3},
+    {"hostname": "marketing-pc-05", "alert_count": 8},
+    {"hostname": "dev-server-02", "alert_count": 1},
+    {"hostname": "vpn-gateway", "alert_count": 12},
+    {"hostname": "ceo-laptop", "alert_count": 1},
+    {"hostname": "domain-controller-01", "alert_count": 15},
+    {"hostname": "fileserver-01", "alert_count": 7},
+    {"hostname": "proxy-server", "alert_count": 21},
+    {"hostname": "dns-server-internal", "alert_count": 4},
+    {"hostname": "build-server-ci-cd", "alert_count": 9},
+    {"hostname": "kiosk-01-lobby", "alert_count": 2}
+  ]
+}
