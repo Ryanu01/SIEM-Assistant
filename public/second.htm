@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIEM Assistant - Secure Access Portal</title>
+    <meta name="description" content="SIEM Assistant - Advanced Security Information and Event Management system with secure access portal and real-time threat monitoring." />
+    <meta name="author" content="SIEM Assistant" />
+    <meta name="keywords" content="SIEM, security, cybersecurity, threat monitoring, incident response, security portal" />
+
+    <meta property="og:title" content="SIEM Assistant - Secure Access Portal" />
+    <meta property="og:description" content="Advanced Security Information and Event Management system with secure access portal and real-time threat monitoring." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SIEM Assistant - Secure Access Portal" />
+    <meta name="twitter:description" content="Advanced Security Information and Event Management system with secure access portal." />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #110E1A;
+            --form-bg-color: #1A1625;
+            --input-bg-color: #2A2438;
+            --border-color: #393349;
+            --primary-text-color: #E0DDEF;
+            --secondary-text-color: #9A94A9;
+            --gradient-start: #8A2BE2; /* BlueViolet */
+            --gradient-end: #4F46E5;   /* Indigo */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            background-image: radial-gradient(circle at top left, rgba(79, 70, 229, 0.15), transparent 40%),
+                              radial-gradient(circle at bottom right, rgba(138, 43, 226, 0.15), transparent 40%);
+            color: var(--primary-text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: var(--form-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            position: relative; 
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Enhanced animated border glow effect with longer trail and slower speed */
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -120px;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(138, 43, 226, 0.3),
+                rgba(138, 43, 226, 0.8), 
+                rgba(79, 70, 229, 1),
+                rgba(255, 255, 255, 0.9),
+                rgba(79, 70, 229, 1),
+                rgba(138, 43, 226, 0.8),
+                rgba(138, 43, 226, 0.3),
+                transparent
+            );
+            filter: blur(1px);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 1), 0 0 50px rgba(79, 70, 229, 0.8);
+            animation: trace-all-borders 12s linear infinite;
+            z-index: 1;
+        }
+
+        /* Enhanced 4-sided border animation with longer trail and slower speed */
+        @keyframes trace-all-borders {
+            /* Stage 1: Move right along the top edge */
+            0% {
+                top: -2px;
+                left: -120px;
+                width: 120px;
+                height: 4px;
+                background: linear-gradient(90deg, 
+                    transparent, 
+                    rgba(138, 43, 226, 0.3),
+                    rgba(138, 43, 226, 0.8), 
+                    rgba(79, 70, 229, 1),
+                    rgba(255, 255, 255, 0.9),
+                    rgba(79, 70, 229, 1),
+                    rgba(138, 43, 226, 0.8),
+                    rgba(138, 43, 226, 0.3),
+                    transparent
+                );
+            }
+            24.9% {
+                top: -2px;
+                left: 100%;
+                width: 120px;
+                height: 4px;
+            }
+            /* Stage 2: Move down along the right edge */
+            25% {
+                top: -120px;
+                left: calc(100% - 2px);
+                width: 4px;
+                height: 120px;
+                background: linear-gradient(180deg, 
+                    transparent, 
+                    rgba(138, 43, 226, 0.3),
+                    rgba(138, 43, 226, 0.8), 
+                    rgba(79, 70, 229, 1),
+                    rgba(255, 255, 255, 0.9),
+                    rgba(79, 70, 229, 1),
+                    rgba(138, 43, 226, 0.8),
+                    rgba(138, 43, 226, 0.3),
+                    transparent
+                );
+            }
+            49.9% {
+                top: 100%;
+                left: calc(100% - 2px);
+                width: 4px;
+                height: 120px;
+            }
+            /* Stage 3: Move left along the bottom edge */
+            50% {
+                top: calc(100% - 2px);
+                left: 100%;
+                width: 120px;
+                height: 4px;
+                background: linear-gradient(270deg, 
+                    transparent, 
+                    rgba(138, 43, 226, 0.3),
+                    rgba(138, 43, 226, 0.8), 
+                    rgba(79, 70, 229, 1),
+                    rgba(255, 255, 255, 0.9),
+                    rgba(79, 70, 229, 1),
+                    rgba(138, 43, 226, 0.8),
+                    rgba(138, 43, 226, 0.3),
+                    transparent
+                );
+            }
+            74.9% {
+                top: calc(100% - 2px);
+                left: -120px;
+                width: 120px;
+                height: 4px;
+            }
+            /* Stage 4: Move up along the left edge */
+            75% {
+                top: 100%;
+                left: -2px;
+                width: 4px;
+                height: 120px;
+                background: linear-gradient(0deg, 
+                    transparent, 
+                    rgba(138, 43, 226, 0.3),
+                    rgba(138, 43, 226, 0.8), 
+                    rgba(79, 70, 229, 1),
+                    rgba(255, 255, 255, 0.9),
+                    rgba(79, 70, 229, 1),
+                    rgba(138, 43, 226, 0.8),
+                    rgba(138, 43, 226, 0.3),
+                    transparent
+                );
+            }
+            100% {
+                top: -120px;
+                left: -2px;
+                width: 4px;
+                height: 120px;
+            }
+        }
+
+        .login-header {
+            text-align: center;
+        }
+
+        .login-header .logo {
+            margin-bottom: 18px;
+        }
+
+        .login-header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .login-header p {
+            font-size: 14px;
+            color: var(--secondary-text-color);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--primary-text-color);
+        }
+
+        .form-group input {
+            background-color: var(--input-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: var(--primary-text-color);
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-group input::placeholder {
+            color: var(--secondary-text-color);
+        }
+
+        .form-group input:focus {
+            border-color: var(--gradient-end);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2), 0 0 20px rgba(79, 70, 229, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 50px; 
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            cursor: pointer;
+            color: var(--secondary-text-color);
+            transition: all 0.3s;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-text-color);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+        }
+
+        .btn-login:hover::before {
+            left: 100%;
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-footer {
+            text-align: center;
+        }
+
+        .forgot-password {
+            color: var(--secondary-text-color);
+            font-size: 14px;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 18px;
+            transition: all 0.3s;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .forgot-password:hover {
+            color: var(--primary-text-color);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: #5d5a68;
+            background-color: var(--input-bg-color);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            line-height: 1.4;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 28px;
+                margin: 16px;
+            }
+            
+            .login-header h1 {
+                font-size: 22px;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            position: relative;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <svg class="logo" width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 2ZM12 12.45C10.86 12.45 9.9 11.49 9.9 10.35C9.9 9.21 10.86 8.25 12 8.25C13.14 8.25 14.1 9.21 14.1 10.35C14.1 11.49 13.14 12.45 12 12.45Z" fill="url(#logo-gradient)"/>
+                <defs>
+                    <linearGradient id="logo-gradient" x1="12" y1="2" x2="12" y2="23" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#8A2BE2"/>
+                        <stop offset="1" stop-color="#4F46E5"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <h1>SIEM Assistant</h1>
+            <p>Secure Access Portal</p>
+        </div>
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username">username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <span class="toggle-password" id="togglePassword">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            <button type="submit" class="btn-login" id="loginBtn">Secure Login</button>
+        </form>
+        <div class="login-footer">
+            <a href="#" class="forgot-password">Forgot your password?</a>
+            <p class="disclaimer">This system contains restricted information. Unauthorized access is prohibited.</p>
+        </div>
+    </div>
+
+<script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    const loginBtn = document.getElementById('loginBtn');
+    const loginForm = document.getElementById('loginForm');
+
+    // Password toggle
+    togglePassword.addEventListener('click', () => {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+
+        const eyeIcon = togglePassword.querySelector('svg');
+        eyeIcon.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            if(type === 'text') {
+                eyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            } else {
+                eyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+            eyeIcon.style.transform = 'scale(1)';
+        }, 150);
+    });
+
+    // Login form submit
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value.trim();
+        const password = passwordInput.value.trim();
+        const originalText = loginBtn.textContent;
+
+        if(!username || !password) {
+            showNotification('Please enter both username and password', 'error');
+            return;
+        }
+
+        loginBtn.textContent = 'Authenticating...';
+        loginBtn.disabled = true;
+        loginBtn.classList.add('loading');
+
+        try {
+            const response = await fetch('/api/v1/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const result = await response.json();
+
+            if(response.ok) {
+                // Save token and username
+                localStorage.setItem('userToken', result.token);
+                localStorage.setItem('username', result.user.username);
+
+                showNotification('Login successful! Redirecting...', 'success');
+
+                // Redirect to chatbot page
+                window.location.href = 'index.html';
+            } else {
+                showNotification(result.message, 'error');
+                loginBtn.textContent = originalText;
+                loginBtn.disabled = false;
+                loginBtn.classList.remove('loading');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            showNotification('An error occurred. Please try again later.', 'error');
+            loginBtn.textContent = originalText;
+            loginBtn.disabled = false;
+            loginBtn.classList.remove('loading');
+        }
+    });
+
+    // Notification function
+    function showNotification(message, type = 'error') {
+        const notification = document.createElement('div');
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? 'linear-gradient(135deg, #10b981, #059669)' : 'linear-gradient(135deg, #ef4444, #dc2626)'};
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        `;
+        document.body.appendChild(notification);
+
+        setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => document.body.removeChild(notification), 300);
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>

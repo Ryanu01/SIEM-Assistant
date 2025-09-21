@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIEM-plify - Chat Assistant</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #110E1A;
+            --container-bg-color: #1A1625;
+            --input-bg-color: #2A2438;
+            --border-color: #393349;
+            --primary-text-color: #E0DDEF;
+            --secondary-text-color: #9A94A9;
+            --gradient-start: #8A2BE2; /* BlueViolet */
+            --gradient-end: #4F46E5;   /* Indigo */
+            --assistant-message-bg: #4F46E5;
+            --user-message-bg: #8A2BE2;
+            --chat-bubble-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-color);
+            background-image: radial-gradient(circle at top left, rgba(79, 70, 229, 0.2), transparent 30%),
+                              radial-gradient(circle at bottom right, rgba(138, 43, 226, 0.2), transparent 30%);
+            color: var(--primary-text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 700px;
+            height: 100vh;
+            background-color: var(--container-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(79, 70, 229, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--container-bg-color);
+            z-index: 10;
+        }
+
+        .chat-header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header .logo-mini {
+            width: 32px;
+            height: 32px;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .header-icons svg {
+            width: 24px;
+            height: 24px;
+            color: var(--secondary-text-color);
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+        }
+        .header-icons svg:hover {
+            color: var(--primary-text-color);
+        }
+
+        .chat-window {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message { display: flex; }
+        .message.user { justify-content: flex-end; }
+        .message.assistant { justify-content: flex-start; }
+
+        .message-bubble {
+            max-width: 90%;
+            padding: 10px 15px;
+            border-radius: var(--chat-bubble-radius);
+            font-size: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            color: white;
+        }
+        .message.user .message-bubble {
+            background-color: var(--user-message-bg);
+            border-bottom-right-radius: 4px;
+        }
+        .message.assistant .message-bubble {
+            background-color: var(--assistant-message-bg);
+            border-bottom-left-radius: 4px;
+        }
+        
+        /* Styles for Tables inside message bubbles */
+        .message-bubble table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: #2a2438c7;
+        }
+        .message-bubble th, .message-bubble td {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        .message-bubble th {
+            background-color: var(--container-bg-color);
+            font-weight: 600;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 16px 20px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--container-bg-color);
+            gap: 10px;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .chat-input-area input {
+            flex-grow: 1;
+            background-color: var(--input-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--primary-text-color);
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .chat-input-area input:focus {
+            border-color: var(--gradient-end);
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+        }
+
+        .chat-input-area button {
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .chat-input-area button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+        .chat-input-area button svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        
+        /* Loading Indicator */
+        .loading-indicator {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>
+                <svg class="logo-mini" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 2ZM12 12.45C10.86 12.45 9.9 11.49 9.9 10.35C9.9 9.21 10.86 8.25 12 8.25C13.14 8.25 14.1 9.21 14.1 10.35C14.1 11.49 13.14 12.45 12 12.45Z" fill="url(#logo-gradient-chat)"/>
+                    <defs>
+                        <linearGradient id="logo-gradient-chat" x1="12" y1="2" x2="12" y2="23" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#8A2BE2"/>
+                            <stop offset="1" stop-color="#4F46E5"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                SIEM-plify Assistant
+            </h1>
+            <div class="header-icons">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.82-.33z"></path></svg>
+            </div>
+        </div>
+
+        <div class="chat-window" id="chatWindow">
+            </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button id="sendButton">
+                Send
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </div>
+    </div>
+
+<script>
+    // --- DOM ELEMENT REFERENCES ---
+    const chatWindow = document.getElementById('chatWindow');
+    const chatInput = document.getElementById('chatInput');
+    const sendButton = document.getElementById('sendButton');
+    let myChart = null;
+    let loadingMessageElement = null;
+
+    // --- MAIN SEND LOGIC ---
+    sendButton.addEventListener('click', handleSend);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSend();
+    });
+
+    async function handleSend() {
+        const userQuery = chatInput.value.trim();
+        if (!userQuery) return;
+
+        displayMessage(userQuery, 'user');
+        chatInput.value = '';
+        displayLoadingIndicator();
+
+        try {
+            const response = await fetch('/api/v1/query', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_query: userQuery })
+            });
+
+            removeLoadingIndicator();
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                if (result.intent === 'count_alerts_by_host') {
+                    displayChart(result.data, 'assistant');
+                } else {
+                    displayTable(result.data, 'assistant');
+                }
+            } else {
+                displayMessage(result.message, 'assistant');
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            removeLoadingIndicator();
+            displayMessage('Sorry, there was an error connecting to the server.', 'assistant');
+        }
+    }
+
+    // --- DISPLAY FUNCTIONS ---
+    function createMessageBubble(content, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        
+        const bubble = document.createElement('div');
+        bubble.className = 'message-bubble';
+        
+        if (typeof content === 'string') {
+            bubble.textContent = content;
+        } else {
+            bubble.appendChild(content); // For tables, charts, etc.
+        }
+        
+        messageDiv.appendChild(bubble);
+        chatWindow.appendChild(messageDiv);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+        return messageDiv;
+    }
+
+    function displayMessage(content, sender) {
+        createMessageBubble(content, sender);
+    }
+
+    function displayTable(data, sender) {
+        if (!data || data.length === 0) {
+            displayMessage('No matching events found.', sender);
+            return;
+        }
+        
+        const table = document.createElement('table');
+        const thead = table.createTHead();
+        const tbody = table.createTBody();
+        
+        const headers = Object.keys(data[0]);
+        const headerRow = thead.insertRow();
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+
+        data.forEach(item => {
+            const row = tbody.insertRow();
+            headers.forEach(header => {
+                const cell = row.insertCell();
+                cell.textContent = item[header];
+            });
+        });
+
+        createMessageBubble(table, sender);
+    }
+    
+    function displayChart(data, sender) {
+        const canvasContainer = document.createElement('div');
+        canvasContainer.innerHTML = '<canvas id="chartCanvas"></canvas>';
+        
+        createMessageBubble(canvasContainer, sender);
+        
+        const labels = data.map(item => item.hostname);
+        const values = data.map(item => item.alert_count);
+        const ctx = document.getElementById('chartCanvas').getContext('2d');
+
+        if (myChart) myChart.destroy();
+
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Alerts by Host',
+                    data: values,
+                    backgroundColor: 'rgba(138, 43, 226, 0.6)',
+                    borderColor: 'rgba(138, 43, 226, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: 'var(--primary-text-color)' },
+                        grid: { color: 'var(--border-color)' }
+                    },
+                    x: {
+                        ticks: { color: 'var(--primary-text-color)' },
+                        grid: { color: 'var(--border-color)' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
+    
+    function displayLoadingIndicator() {
+        const spinner = document.createElement('div');
+        spinner.className = 'loading-indicator';
+        loadingMessageElement = createMessageBubble(spinner, 'assistant');
+    }
+
+    function removeLoadingIndicator() {
+        if (loadingMessageElement) {
+            chatWindow.removeChild(loadingMessageElement);
+            loadingMessageElement = null;
+        }
+    }
+
+    // Initial bot greeting
+    document.addEventListener('DOMContentLoaded', () => {
+        displayMessage("Hello! I'm SIEM-plify, your AI Security Assistant. How can I help you today?", 'assistant');
+    });
+</script>
+
+</body>
+</html>
