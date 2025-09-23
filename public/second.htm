@@ -32,6 +32,17 @@
             --gradient-start: #8A2BE2; /* BlueViolet */
             --gradient-end: #4F46E5;   /* Indigo */
         }
+        
+        body.light-mode {
+            --bg-color: #F8F8F8;
+            --form-bg-color: #FFFFFF;
+            --input-bg-color: #F0F0F0;
+            --border-color: #E0E0E0;
+            --primary-text-color: #333333;
+            --secondary-text-color: #888888;
+            --gradient-start: #6A11CB;
+            --gradient-end: #2575FC;
+        }
 
         * {
             margin: 0;
@@ -50,6 +61,28 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+            position: relative; 
+        }
+
+        #mode-toggle {
+            cursor: pointer;
+            padding: 10px 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 20px;
+            background: var(--form-bg-color);
+            color: var(--primary-text-color);
+            transition: background 0.3s, transform 0.2s, color 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        #mode-toggle:hover {
+            transform: scale(1.1);
         }
 
         .login-container {
@@ -62,12 +95,12 @@
             display: flex;
             flex-direction: column;
             gap: 28px;
-            position: relative; 
+            position: relative;
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
         }
 
-        /* Enhanced animated border glow effect with longer trail and slower speed */
         .login-container::before {
             content: '';
             position: absolute;
@@ -92,25 +125,13 @@
             z-index: 1;
         }
 
-        /* Enhanced 4-sided border animation with longer trail and slower speed */
         @keyframes trace-all-borders {
-            /* Stage 1: Move right along the top edge */
             0% {
                 top: -2px;
                 left: -120px;
                 width: 120px;
                 height: 4px;
-                background: linear-gradient(90deg, 
-                    transparent, 
-                    rgba(138, 43, 226, 0.3),
-                    rgba(138, 43, 226, 0.8), 
-                    rgba(79, 70, 229, 1),
-                    rgba(255, 255, 255, 0.9),
-                    rgba(79, 70, 229, 1),
-                    rgba(138, 43, 226, 0.8),
-                    rgba(138, 43, 226, 0.3),
-                    transparent
-                );
+                background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.3), rgba(138, 43, 226, 0.8), rgba(79, 70, 229, 1), rgba(255, 255, 255, 0.9), rgba(79, 70, 229, 1), rgba(138, 43, 226, 0.8), rgba(138, 43, 226, 0.3), transparent);
             }
             24.9% {
                 top: -2px;
@@ -118,23 +139,12 @@
                 width: 120px;
                 height: 4px;
             }
-            /* Stage 2: Move down along the right edge */
             25% {
                 top: -120px;
                 left: calc(100% - 2px);
                 width: 4px;
                 height: 120px;
-                background: linear-gradient(180deg, 
-                    transparent, 
-                    rgba(138, 43, 226, 0.3),
-                    rgba(138, 43, 226, 0.8), 
-                    rgba(79, 70, 229, 1),
-                    rgba(255, 255, 255, 0.9),
-                    rgba(79, 70, 229, 1),
-                    rgba(138, 43, 226, 0.8),
-                    rgba(138, 43, 226, 0.3),
-                    transparent
-                );
+                background: linear-gradient(180deg, transparent, rgba(138, 43, 226, 0.3), rgba(138, 43, 226, 0.8), rgba(79, 70, 229, 1), rgba(255, 255, 255, 0.9), rgba(79, 70, 229, 1), rgba(138, 43, 226, 0.8), rgba(138, 43, 226, 0.3), transparent);
             }
             49.9% {
                 top: 100%;
@@ -142,23 +152,12 @@
                 width: 4px;
                 height: 120px;
             }
-            /* Stage 3: Move left along the bottom edge */
             50% {
                 top: calc(100% - 2px);
                 left: 100%;
                 width: 120px;
                 height: 4px;
-                background: linear-gradient(270deg, 
-                    transparent, 
-                    rgba(138, 43, 226, 0.3),
-                    rgba(138, 43, 226, 0.8), 
-                    rgba(79, 70, 229, 1),
-                    rgba(255, 255, 255, 0.9),
-                    rgba(79, 70, 229, 1),
-                    rgba(138, 43, 226, 0.8),
-                    rgba(138, 43, 226, 0.3),
-                    transparent
-                );
+                background: linear-gradient(270deg, transparent, rgba(138, 43, 226, 0.3), rgba(138, 43, 226, 0.8), rgba(79, 70, 229, 1), rgba(255, 255, 255, 0.9), rgba(79, 70, 229, 1), rgba(138, 43, 226, 0.8), rgba(138, 43, 226, 0.3), transparent);
             }
             74.9% {
                 top: calc(100% - 2px);
@@ -166,23 +165,12 @@
                 width: 120px;
                 height: 4px;
             }
-            /* Stage 4: Move up along the left edge */
             75% {
                 top: 100%;
                 left: -2px;
                 width: 4px;
                 height: 120px;
-                background: linear-gradient(0deg, 
-                    transparent, 
-                    rgba(138, 43, 226, 0.3),
-                    rgba(138, 43, 226, 0.8), 
-                    rgba(79, 70, 229, 1),
-                    rgba(255, 255, 255, 0.9),
-                    rgba(79, 70, 229, 1),
-                    rgba(138, 43, 226, 0.8),
-                    rgba(138, 43, 226, 0.3),
-                    transparent
-                );
+                background: linear-gradient(0deg, transparent, rgba(138, 43, 226, 0.3), rgba(138, 43, 226, 0.8), rgba(79, 70, 229, 1), rgba(255, 255, 255, 0.9), rgba(79, 70, 229, 1), rgba(138, 43, 226, 0.8), rgba(138, 43, 226, 0.3), transparent);
             }
             100% {
                 top: -120px;
@@ -274,10 +262,14 @@
             padding: 4px;
             border-radius: 4px;
         }
-
+        
         .toggle-password:hover {
             color: var(--primary-text-color);
             background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .toggle-password svg {
+            display: block; 
         }
 
         .btn-login {
@@ -353,8 +345,12 @@
             border: 1px solid var(--border-color);
             line-height: 1.4;
         }
+        
+        body.light-mode .disclaimer {
+            color: #666; 
+        }
 
-        /* Responsive adjustments */
+
         @media (max-width: 480px) {
             .login-container {
                 padding: 28px;
@@ -366,7 +362,6 @@
             }
         }
 
-        /* Loading animation */
         .loading {
             position: relative;
         }
@@ -388,9 +383,47 @@
         @keyframes spin {
             to { transform: translateY(-50%) rotate(360deg); }
         }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
     </style>
 </head>
 <body>
+
+    <button id="mode-toggle" aria-label="Toggle dark and light mode">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
+
     <div class="login-container">
         <div class="login-header">
             <svg class="logo" width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -407,17 +440,21 @@
         </div>
         <form class="login-form" id="loginForm">
             <div class="form-group">
-                <label for="username">username</label>
+                <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-wrapper">
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    <span class="toggle-password" id="togglePassword">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <span class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
+                        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
                         </svg>
                     </span>
                 </div>
@@ -435,33 +472,71 @@
     const passwordInput = document.getElementById('password');
     const loginBtn = document.getElementById('loginBtn');
     const loginForm = document.getElementById('loginForm');
+    const toggleBtn = document.getElementById("mode-toggle");
+    
+    function updateTheme(theme) {
+        if (theme === "light") {
+            document.body.classList.add("light-mode");
+            toggleBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            `;
+        } else {
+            document.body.classList.remove("light-mode");
+            toggleBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            `;
+        }
+    }
 
-    // Password toggle
-    togglePassword.addEventListener('click', () => {
-        const type = passwordInput.type === 'password' ? 'text' : 'password';
-        passwordInput.type = type;
+    function setInitialTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        updateTheme(savedTheme || "dark"); 
+    }
 
-        const eyeIcon = togglePassword.querySelector('svg');
-        eyeIcon.style.transform = 'scale(0.8)';
-        setTimeout(() => {
-            if(type === 'text') {
-                eyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
-            } else {
-                eyeIcon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
-            }
-            eyeIcon.style.transform = 'scale(1)';
-        }, 150);
+    toggleBtn.addEventListener("click", () => {
+        const newTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+        localStorage.setItem("theme", newTheme);
+        updateTheme(newTheme);
     });
 
-    // Login form submit
-    loginForm.addEventListener('submit', async (e) => {
+    setInitialTheme();
+
+    togglePassword.addEventListener('click', () => {
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        
+        const eyeOpen = document.querySelector('.eye-open');
+        const eyeClosed = document.querySelector('.eye-closed');
+        
+        if (isPassword) {
+            eyeOpen.style.display = 'none';
+            eyeClosed.style.display = 'block';
+        } else {
+            eyeOpen.style.display = 'block';
+            eyeClosed.style.display = 'none';
+        }
+    });
+
+    async function handleLogin(e) {
         e.preventDefault();
 
         const username = document.getElementById('username').value.trim();
         const password = passwordInput.value.trim();
-        const originalText = loginBtn.textContent;
+        const originalBtnText = loginBtn.textContent;
 
-        if(!username || !password) {
+        if (!username || !password) {
             showNotification('Please enter both username and password', 'error');
             return;
         }
@@ -479,32 +554,27 @@
 
             const result = await response.json();
 
-            if(response.ok) {
-                // Save token and username
+            if (response.ok) {
                 localStorage.setItem('userToken', result.token);
                 localStorage.setItem('username', result.user.username);
-
                 showNotification('Login successful! Redirecting...', 'success');
-
-                // Redirect to chatbot page
-                window.location.href = 'index.html';
+                setTimeout(() => window.location.href = 'index.html', 1500);
             } else {
-                showNotification(result.message, 'error');
-                loginBtn.textContent = originalText;
-                loginBtn.disabled = false;
-                loginBtn.classList.remove('loading');
+                showNotification(result.message || 'Login failed. Please check your credentials.', 'error');
             }
         } catch (error) {
             console.error('Login error:', error);
             showNotification('An error occurred. Please try again later.', 'error');
-            loginBtn.textContent = originalText;
+        } finally {
+            loginBtn.textContent = originalBtnText;
             loginBtn.disabled = false;
             loginBtn.classList.remove('loading');
         }
-    });
+    }
 
-    // Notification function
-    function showNotification(message, type = 'error') {
+    loginForm.addEventListener('submit', handleLogin);
+
+     function showNotification(message, type = 'error') {
         const notification = document.createElement('div');
         notification.textContent = message;
         notification.style.cssText = `
@@ -529,6 +599,21 @@
             setTimeout(() => document.body.removeChild(notification), 300);
         }, 3000);
     }
+
+      document.addEventListener('mousemove', function(e) {
+            const container = document.querySelector('.login-container');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 70;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 70;
+            
+            container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Reset transform when mouse leaves
+        document.addEventListener('mouseleave', function() {
+            const container = document.querySelector('.login-container');
+            container.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        });
+    
 </script>
 
 </body>

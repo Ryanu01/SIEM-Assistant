@@ -274,7 +274,7 @@
 
             if (result.status === 'success') {
                 if (result.intent === 'count_alerts_by_host') {
-                    displayChart(result.data, 'assistant');
+                    displayTable(result.data, 'assistant');
                 } else {
                     displayTable(result.data, 'assistant');
                 }
@@ -341,49 +341,49 @@
         createMessageBubble(table, sender);
     }
     
-    function displayChart(data, sender) {
-        const canvasContainer = document.createElement('div');
-        canvasContainer.innerHTML = '<canvas id="chartCanvas"></canvas>';
+    // function displayChart(data, sender) {
+    //     const canvasContainer = document.createElement('div');
+    //     canvasContainer.innerHTML = '<canvas id="chartCanvas"></canvas>';
         
-        createMessageBubble(canvasContainer, sender);
+    //     createMessageBubble(canvasContainer, sender);
         
-        const labels = data.map(item => item.hostname);
-        const values = data.map(item => item.alert_count);
-        const ctx = document.getElementById('chartCanvas').getContext('2d');
+    //     const labels = data.map(item => item.hostname);
+    //     const values = data.map(item => item.alert_count);
+    //     const ctx = document.getElementById('chartCanvas').getContext('2d');
 
-        if (myChart) myChart.destroy();
+    //     if (myChart) myChart.destroy();
 
-        myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Alerts by Host',
-                    data: values,
-                    backgroundColor: 'rgba(138, 43, 226, 0.6)',
-                    borderColor: 'rgba(138, 43, 226, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: { color: 'var(--primary-text-color)' },
-                        grid: { color: 'var(--border-color)' }
-                    },
-                    x: {
-                        ticks: { color: 'var(--primary-text-color)' },
-                        grid: { color: 'var(--border-color)' }
-                    }
-                },
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        });
-    }
+    //     myChart = new Chart(ctx, {
+    //         type: 'bar',
+    //         data: {
+    //             labels: labels,
+    //             datasets: [{
+    //                 label: 'Alerts by Host',
+    //                 data: values,
+    //                 backgroundColor: 'rgba(138, 43, 226, 0.6)',
+    //                 borderColor: 'rgba(138, 43, 226, 1)',
+    //                 borderWidth: 1
+    //             }]
+    //         },
+    //         options: {
+    //             responsive: true,
+    //             scales: {
+    //                 y: {
+    //                     beginAtZero: true,
+    //                     ticks: { color: 'var(--primary-text-color)' },
+    //                     grid: { color: 'var(--border-color)' }
+    //                 },
+    //                 x: {
+    //                     ticks: { color: 'var(--primary-text-color)' },
+    //                     grid: { color: 'var(--border-color)' }
+    //                 }
+    //             },
+    //             plugins: {
+    //                 legend: { display: false }
+    //             }
+    //         }
+    //     });
+    // }
     
     function displayLoadingIndicator() {
         const spinner = document.createElement('div');
