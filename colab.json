@@ -1,0 +1,618 @@
+[
+  {
+    "instruction": "show me all alerts for agent 001",
+    "query": "GET /alerts?search=agent.id=001"
+  },
+  {
+    "instruction": "find alerts from agent 001",
+    "query": "GET /alerts?search=agent.id=001"
+  },
+  {
+    "instruction": "get agent 001 alerts",
+    "query": "GET /alerts?search=agent.id=001"
+  },
+  {
+    "instruction": "agent 007's alerts",
+    "query": "GET /alerts?search=agent.id=007"
+  },
+  {
+    "instruction": "list alerts for agent 456",
+    "query": "GET /alerts?search=agent.id=456"
+  },
+  {
+    "instruction": "show me alerts from agent 123",
+    "query": "GET /alerts?search=agent.id=123"
+  },
+  {
+    "instruction": "find alerts where agent is 999",
+    "query": "GET /alerts?search=agent.id=999"
+  },
+  {
+    "instruction": "all alerts for agent id 025",
+    "query": "GET /alerts?search=agent.id=025"
+  },
+  {
+    "instruction": "get me alerts for agent 500",
+    "query": "GET /alerts?search=agent.id=500"
+  },
+  {
+    "instruction": "can I see alerts for agent 010",
+    "query": "GET /alerts?search=agent.id=010"
+  },
+  {
+    "instruction": "any alerts with rule id 5710?",
+    "query": "GET /alerts?search=rule.id=5710"
+  },
+  {
+    "instruction": "list all alerts with rule 5710",
+    "query": "GET /alerts?search=rule.id=5710"
+  },
+  {
+    "instruction": "find rule 5710",
+    "query": "GET /alerts?search=rule.id=5710"
+  },
+  {
+    "instruction": "show rule 9001 alerts",
+    "query": "GET /alerts?search=rule.id=9001"
+  },
+  {
+    "instruction": "search for alerts with rule id 1002",
+    "query": "GET /alerts?search=rule.id=1002"
+  },
+  {
+    "instruction": "find me alerts for rule 31151",
+    "query": "GET /alerts?search=rule.id=31151"
+  },
+  {
+    "instruction": "get alerts with rule 8006",
+    "query": "GET /alerts?search=rule.id=8006"
+  },
+  {
+    "instruction": "alerts triggered by rule 2501?",
+    "query": "GET /alerts?search=rule.id=2501"
+  },
+  {
+    "instruction": "query for rule 4011",
+    "query": "GET /alerts?search=rule.id=4011"
+  },
+  {
+    "instruction": "list events for rule 60122",
+    "query": "GET /alerts?search=rule.id=60122"
+  },
+  {
+    "instruction": "show high severity alerts",
+    "query": "GET /alerts?search=rule.level>=10"
+  },
+  {
+    "instruction": "find critical alerts",
+    "query": "GET /alerts?search=rule.level>=12"
+  },
+  {
+    "instruction": "list all critical security events",
+    "query": "GET /alerts?search=rule.level>=12"
+  },
+  {
+    "instruction": "any alerts with a level 10 or higher?",
+    "query": "GET /alerts?search=rule.level>=10"
+  },
+  {
+    "instruction": "what are the most severe alerts",
+    "query": "GET /alerts?search=rule.level>=12"
+  },
+  {
+    "instruction": "query for alerts level > 9",
+    "query": "GET /alerts?search=rule.level>=10"
+  },
+  {
+    "instruction": "show me alerts with severity 7 or more",
+    "query": "GET /alerts?search=rule.level>=7"
+  },
+  {
+    "instruction": "find alerts with level >= 5",
+    "query": "GET /alerts?search=rule.level>=5"
+  },
+  {
+    "instruction": "list alerts with a minimum level of 12",
+    "query": "GET /alerts?search=rule.level>=12"
+  },
+  {
+    "instruction": "are there any medium severity alerts?",
+    "query": "GET /alerts?search=rule.level>=5 and rule.level<=9"
+  },
+  {
+    "instruction": "show me low severity alerts",
+    "query": "GET /alerts?search=rule.level<=4"
+  },
+  {
+    "instruction": "find all alerts from agent 007 with rule id 9001",
+    "query": "GET /alerts?search=agent.id=007 and rule.id=9001"
+  },
+  {
+    "instruction": "agent 001 alerts for rule 5710",
+    "query": "GET /alerts?search=agent.id=001 and rule.id=5710"
+  },
+  {
+    "instruction": "critical alerts for agent 001",
+    "query": "GET /alerts?search=agent.id=001 and rule.level>=12"
+  },
+  {
+    "instruction": "show high severity alerts from agent 123",
+    "query": "GET /alerts?search=agent.id=123 and rule.level>=10"
+  },
+  {
+    "instruction": "any alerts for agent 456 with level >= 7?",
+    "query": "GET /alerts?search=agent.id=456 and rule.level>=7"
+  },
+  {
+    "instruction": "find rule 1002 alerts with high severity",
+    "query": "GET /alerts?search=rule.id=1002 and rule.level>=10"
+  },
+  {
+    "instruction": "show critical alerts for rule id 31151",
+    "query": "GET /alerts?search=rule.id=31151 and rule.level>=12"
+  },
+  {
+    "instruction": "high severity alerts for agent 001 with rule 5710",
+    "query": "GET /alerts?search=agent.id=001 and rule.id=5710 and rule.level>=10"
+  },
+  {
+    "instruction": "critical alerts for agent 007 with rule 9001",
+    "query": "GET /alerts?search=agent.id=007 and rule.id=9001 and rule.level>=12"
+  },
+  {
+    "instruction": "agent 999 alerts with rule 8006 and severity 10+",
+    "query": "GET /alerts?search=agent.id=999 and rule.id=8006 and rule.level>=10"
+  },
+  {
+    "instruction": "show alerts for agent 001",
+    "query": "GET /alerts?search=agent.id=001"
+  },
+  {
+    "instruction": "find alerts from agent 100",
+    "query": "GET /alerts?search=agent.id=100"
+  },
+  {
+    "instruction": "get agent 789 alerts",
+    "query": "GET /alerts?search=agent.id=789"
+  },
+  {
+    "instruction": "agent 001's security events",
+    "query": "GET /alerts?search=agent.id=001"
+  },
+  {
+    "instruction": "list alerts for agent 007",
+    "query": "GET /alerts?search=agent.id=007"
+  },
+  {
+    "instruction": "show me alerts from agent 999",
+    "query": "GET /alerts?search=agent.id=999"
+  },
+  {
+    "instruction": "find alerts where agent is 010",
+    "query": "GET /alerts?search=agent.id=010"
+  },
+  {
+    "instruction": "all alerts for agent id 456",
+    "query": "GET /alerts?search=agent.id=456"
+  },
+  {
+    "instruction": "get me alerts for agent 123",
+    "query": "GET /alerts?search=agent.id=123"
+  },
+  {
+    "instruction": "can I see alerts for agent 025",
+    "query": "GET /alerts?search=agent.id=025"
+  },
+  {
+    "instruction": "any alerts with rule id 100001?",
+    "query": "GET /alerts?search=rule.id=100001"
+  },
+  {
+    "instruction": "list all alerts with rule 2501",
+    "query": "GET /alerts?search=rule.id=2501"
+  },
+  {
+    "instruction": "find rule 60122",
+    "query": "GET /alerts?search=rule.id=60122"
+  },
+  {
+    "instruction": "show rule 4011 alerts",
+    "query": "GET /alerts?search=rule.id=4011"
+  },
+  {
+    "instruction": "search for alerts with rule id 8006",
+    "query": "GET /alerts?search=rule.id=8006"
+  },
+  {
+    "instruction": "find me alerts for rule 31151",
+    "query": "GET /alerts?search=rule.id=31151"
+  },
+  {
+    "instruction": "get alerts with rule 1002",
+    "query": "GET /alerts?search=rule.id=1002"
+  },
+  {
+    "instruction": "alerts triggered by rule 9001?",
+    "query": "GET /alerts?search=rule.id=9001"
+  },
+  {
+    "instruction": "query for rule 5710",
+    "query": "GET /alerts?search=rule.id=5710"
+  },
+  {
+    "instruction": "list events for rule 100001",
+    "query": "GET /alerts?search=rule.id=100001"
+  },
+  {
+    "instruction": "show medium severity alerts",
+    "query": "GET /alerts?search=rule.level>=5 and rule.level<=9"
+  },
+  {
+    "instruction": "find alerts with level > 4",
+    "query": "GET /alerts?search=rule.level>=5"
+  },
+  {
+    "instruction": "list all security events with level >= 8",
+    "query": "GET /alerts?search=rule.level>=8"
+  },
+  {
+    "instruction": "any alerts with a level 13 or higher?",
+    "query": "GET /alerts?search=rule.level>=13"
+  },
+  {
+    "instruction": "what are the alerts with severity > 14",
+    "query": "GET /alerts?search=rule.level>=15"
+  },
+  {
+    "instruction": "query for alerts level > 6",
+    "query": "GET /alerts?search=rule.level>=7"
+  },
+  {
+    "instruction": "show me alerts with severity 3 or more",
+    "query": "GET /alerts?search=rule.level>=3"
+  },
+  {
+    "instruction": "find alerts with level >= 9",
+    "query": "GET /alerts?search=rule.level>=9"
+  },
+  {
+    "instruction": "list alerts with a minimum level of 10",
+    "query": "GET /alerts?search=rule.level>=10"
+  },
+  {
+    "instruction": "are there any high severity alerts?",
+    "query": "GET /alerts?search=rule.level>=10"
+  },
+  {
+    "instruction": "show me critical alerts",
+    "query": "GET /alerts?search=rule.level>=12"
+  },
+  {
+    "instruction": "find all alerts from agent 123 with rule id 4011",
+    "query": "GET /alerts?search=agent.id=123 and rule.id=4011"
+  },
+  {
+    "instruction": "agent 456 alerts for rule 60122",
+    "query": "GET /alerts?search=agent.id=456 and rule.id=60122"
+  },
+  {
+    "instruction": "medium severity alerts for agent 789",
+    "query": "GET /alerts?search=agent.id=789 and rule.level>=5 and rule.level<=9"
+  },
+  {
+    "instruction": "show alerts with severity > 8 from agent 999",
+    "query": "GET /alerts?search=agent.id=999 and rule.level>=9"
+  },
+  {
+    "instruction": "any alerts for agent 010 with level >= 12?",
+    "query": "GET /alerts?search=agent.id=010 and rule.level>=12"
+  },
+  {
+    "instruction": "find rule 2501 alerts with low severity",
+    "query": "GET /alerts?search=rule.id=2501 and rule.level<=4"
+  },
+  {
+    "instruction": "show critical alerts for rule id 8006",
+    "query": "GET /alerts?search=rule.id=8006 and rule.level>=12"
+  },
+  {
+    "instruction": "medium severity alerts for agent 025 with rule 1002",
+    "query": "GET /alerts?search=agent.id=025 and rule.id=1002 and rule.level>=5 and rule.level<=9"
+  },
+  {
+    "instruction": "critical alerts for agent 500 with rule 31151",
+    "query": "GET /alerts?search=agent.id=500 and rule.id=31151 and rule.level>=12"
+  },
+  {
+    "instruction": "agent 100 alerts with rule 9001 and severity 10+",
+    "query": "GET /alerts?search=agent.id=100 and rule.id=9001 and rule.level>=10"
+  },
+  {
+    "instruction": "show all alerts for agent 007",
+    "query": "GET /alerts?search=agent.id=007"
+  },
+  {
+    "instruction": "find alerts from agent 025",
+    "query": "GET /alerts?search=agent.id=025"
+  },
+  {
+    "instruction": "get agent 100 alerts",
+    "query": "GET /alerts?search=agent.id=100"
+  },
+  {
+    "instruction": "agent 123's alerts",
+    "query": "GET /alerts?search=agent.id=123"
+  },
+  {
+    "instruction": "list alerts for agent 500",
+    "query": "GET /alerts?search=agent.id=500"
+  },
+  {
+    "instruction": "show me alerts from agent 789",
+    "query": "GET /alerts?search=agent.id=789"
+  },
+  {
+    "instruction": "find alerts where agent is 001",
+    "query": "GET /alerts?search=agent.id=001"
+  },
+  {
+    "instruction": "all alerts for agent id 010",
+    "query": "GET /alerts?search=agent.id=010"
+  },
+  {
+    "instruction": "get me alerts for agent 999",
+    "query": "GET /alerts?search=agent.id=999"
+  },
+  {
+    "instruction": "can I see alerts for agent 456",
+    "query": "GET /alerts?search=agent.id=456"
+  },
+  {
+    "instruction": "any alerts with rule id 31151?",
+    "query": "GET /alerts?search=rule.id=31151"
+  },
+  {
+    "instruction": "list all alerts with rule 8006",
+    "query": "GET /alerts?search=rule.id=8006"
+  },
+  {
+    "instruction": "find rule 2501",
+    "query": "GET /alerts?search=rule.id=2501"
+  },
+  {
+    "instruction": "show rule 1002 alerts",
+    "query": "GET /alerts?search=rule.id=1002"
+  },
+  {
+    "instruction": "search for alerts with rule id 9001",
+    "query": "GET /alerts?search=rule.id=9001"
+  },
+  {
+    "instruction": "find me alerts for rule 5710",
+    "query": "GET /alerts?search=rule.id=5710"
+  },
+  {
+    "instruction": "get alerts with rule 100001",
+    "query": "GET /alerts?search=rule.id=100001"
+  },
+  {
+    "instruction": "alerts triggered by rule 4011?",
+    "query": "GET /alerts?search=rule.id=4011"
+  },
+  {
+    "instruction": "query for rule 60122",
+    "query": "GET /alerts?search=rule.id=60122"
+  },
+  {
+    "instruction": "list events for rule 31151",
+    "query": "GET /alerts?search=rule.id=31151"
+  },
+  {
+    "instruction": "show very severe alerts",
+    "query": "GET /alerts?search=rule.level>=12"
+  },
+  {
+    "instruction": "find alerts with level 15",
+    "query": "GET /alerts?search=rule.level>=15"
+  },
+  {
+    "instruction": "list all critical security events from agent 007",
+    "query": "GET /alerts?search=agent.id=007 and rule.level>=12"
+  },
+  {
+    "instruction": "any alerts with a level 5 or higher from agent 123?",
+    "query": "GET /alerts?search=agent.id=123 and rule.level>=5"
+  },
+  {
+    "instruction": "what are the most severe alerts for rule 5710",
+    "query": "GET /alerts?search=rule.id=5710 and rule.level>=12"
+  },
+  {
+    "instruction": "query for alerts level > 11 for agent 456",
+    "query": "GET /alerts?search=agent.id=456 and rule.level>=12"
+  },
+  {
+    "instruction": "show me alerts from agent 789 with severity 9 or more",
+    "query": "GET /alerts?search=agent.id=789 and rule.level>=9"
+  },
+  {
+    "instruction": "find agent 010 alerts with level >= 3",
+    "query": "GET /alerts?search=agent.id=010 and rule.level>=3"
+  },
+  {
+    "instruction": "list alerts for rule 9001 with a minimum level of 7",
+    "query": "GET /alerts?search=rule.id=9001 and rule.level>=7"
+  },
+  {
+    "instruction": "are there any medium severity alerts for rule 1002?",
+    "query": "GET /alerts?search=rule.id=1002 and rule.level>=5 and rule.level<=9"
+  },
+  {
+    "instruction": "show me low severity alerts for agent 001",
+    "query": "GET /alerts?search=agent.id=001 and rule.level<=4"
+  },
+  {
+    "instruction": "find all alerts from agent 025 with rule id 2501",
+    "query": "GET /alerts?search=agent.id=025 and rule.id=2501"
+  },
+  {
+    "instruction": "agent 500 alerts for rule 8006",
+    "query": "GET /alerts?search=agent.id=500 and rule.id=8006"
+  },
+  {
+    "instruction": "critical alerts for agent 999",
+    "query": "GET /alerts?search=agent.id=999 and rule.level>=12"
+  },
+  {
+    "instruction": "show high severity alerts from agent 100",
+    "query": "GET /alerts?search=agent.id=100 and rule.level>=10"
+  },
+  {
+    "instruction": "any alerts for agent 007 with level >= 5?",
+    "query": "GET /alerts?search=agent.id=007 and rule.level>=5"
+  },
+  {
+    "instruction": "find rule 4011 alerts with high severity",
+    "query": "GET /alerts?search=rule.id=4011 and rule.level>=10"
+  },
+  {
+    "instruction": "show critical alerts for rule id 60122",
+    "query": "GET /alerts?search=rule.id=60122 and rule.level>=12"
+  },
+  {
+    "instruction": "high severity alerts for agent 789 with rule 100001",
+    "query": "GET /alerts?search=agent.id=789 and rule.id=100001 and rule.level>=10"
+  },
+  {
+    "instruction": "critical alerts for agent 010 with rule 5710",
+    "query": "GET /alerts?search=agent.id=010 and rule.id=5710 and rule.level>=12"
+  },
+  {
+    "instruction": "agent 123 alerts with rule 31151 and severity 12+",
+    "query": "GET /alerts?search=agent.id=123 and rule.id=31151 and rule.level>=12"
+  },
+  {
+    "instruction": "show alerts for agent 456",
+    "query": "GET /alerts?search=agent.id=456"
+  },
+  {
+    "instruction": "find agent 999 alerts",
+    "query": "GET /alerts?search=agent.id=999"
+  },
+  {
+    "instruction": "get alerts, agent 010",
+    "query": "GET /alerts?search=agent.id=010"
+  },
+  {
+    "instruction": "agent 001's security issues",
+    "query": "GET /alerts?search=agent.id=001"
+  },
+  {
+    "instruction": "list all alerts for agent 789",
+    "query": "GET /alerts?search=agent.id=789"
+  },
+  {
+    "instruction": "show me alerts from agent 007",
+    "query": "GET /alerts?search=agent.id=007"
+  },
+  {
+    "instruction": "find alerts where agent is 500",
+    "query": "GET /alerts?search=agent.id=500"
+  },
+  {
+    "instruction": "all alerts for agent id 100",
+    "query": "GET /alerts?search=agent.id=100"
+  },
+  {
+    "instruction": "get me alerts for agent 025",
+    "query": "GET /alerts?search=agent.id=025"
+  },
+  {
+    "instruction": "can I see alerts for agent 123",
+    "query": "GET /alerts?search=agent.id=123"
+  },
+  {
+    "instruction": "any alerts with rule id 9001?",
+    "query": "GET /alerts?search=rule.id=9001"
+  },
+  {
+    "instruction": "list all alerts with rule 1002",
+    "query": "GET /alerts?search=rule.id=1002"
+  },
+  {
+    "instruction": "find alerts for rule 31151",
+    "query": "GET /alerts?search=rule.id=31151"
+  },
+  {
+    "instruction": "show rule 5710 events",
+    "query": "GET /alerts?search=rule.id=5710"
+  },
+  {
+    "instruction": "search for alerts with rule id 60122",
+    "query": "GET /alerts?search=rule.id=60122"
+  },
+  {
+    "instruction": "find me alerts for rule 2501",
+    "query": "GET /alerts?search=rule.id=2501"
+  },
+  {
+    "instruction": "get alerts with rule 4011",
+    "query": "GET /alerts?search=rule.id=4011"
+  },
+  {
+    "instruction": "alerts from rule 8006?",
+    "query": "GET /alerts?search=rule.id=8006"
+  },
+  {
+    "instruction": "query for rule id 100001",
+    "query": "GET /alerts?search=rule.id=100001"
+  },
+  {
+    "instruction": "list events for rule 9001",
+    "query": "GET /alerts?search=rule.id=9001"
+  },
+  {
+    "instruction": "show severity 10 alerts",
+    "query": "GET /alerts?search=rule.level>=10"
+  },
+  {
+    "instruction": "find critical events",
+    "query": "GET /alerts?search=rule.level>=12"
+  },
+  {
+    "instruction": "list all level 5+ security events",
+    "query": "GET /alerts?search=rule.level>=5"
+  },
+  {
+    "instruction": "any alerts with a level 8 or higher?",
+    "query": "GET /alerts?search=rule.level>=8"
+  },
+  {
+    "instruction": "what are the most critical alerts",
+    "query": "GET /alerts?search=rule.level>=12"
+  },
+  {
+    "instruction": "query for alerts level > 2",
+    "query": "GET /alerts?search=rule.level>=3"
+  },
+  {
+    "instruction": "show me alerts with severity 14 or more",
+    "query": "GET /alerts?search=rule.level>=14"
+  },
+  {
+    "instruction": "find alerts with level >= 10",
+    "query": "GET /alerts?search=rule.level>=10"
+  },
+  {
+    "instruction": "list alerts with a minimum level of 4",
+    "query": "GET /alerts?search=rule.level>=4"
+  },
+  {
+    "instruction": "are there any low priority alerts?",
+    "query": "GET /alerts?search=rule.level<=4"
+  },
+  {
+    "instruction": "show me all alerts",
+    "query": "GET /alerts"
+  }
+]
