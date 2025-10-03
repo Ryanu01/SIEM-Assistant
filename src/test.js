@@ -26,7 +26,7 @@ const users = [
 
 //New endpoint for login
 
-const JWT_SECRET = "930239daba3eda311bb2e41d67b312eba2bfd0be8cf11971f9a68ae465b05c9d";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 app.post('/api/v1/login', (req, res) => {
     const {username, password} = req.body;
